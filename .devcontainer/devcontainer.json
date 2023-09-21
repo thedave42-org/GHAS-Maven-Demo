@@ -10,7 +10,8 @@
 			"version": "none",
 			"installMaven": "true",
 			"installGradle": "false"
-		}
+		},
+		"ghcr.io/joshspicer/features/mitm-proxy:1": {}
 	},
 	"customizations": {
 		"vscode": {
