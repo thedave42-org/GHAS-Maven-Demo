@@ -74,12 +74,11 @@ jobs:
         with:
           category: "/language:java"
 
-      - name: Start ssh access for ${{ github.triggering_actor }} 
-        #if: ${{ failure() }}
-        uses: ryanchapman/gha-ssh@v1
+      - name: Start SSH access for ${{ github.triggering_actor }}
+        uses: Tofandel/ssh-server-action@v1.0.0
         with:
-          # Comma separated list of GitHub usernames which are allowed to ssh in (e.g. "johndoe,janedoe")
-          authorized_github_users: '${{ github.triggering_actor }}' # grant permissions to user who triggered workflow
-          # Enable tmate debug logging (-vvv -F cmdline args)
-          debug: false # optional
+          user_name: ${{ github.triggering_actor }} # Optional, default value is ssh-user
+          sudo_access: true # Optional, allow user to use sudo without password, default: false
+          # public_key: ${{ secrets.PUBLIC_KEY }} # Optional, Public key authorized to access the server
+          public_key_url: https://github.com/${{ github.triggering_actor }}.keys # Optional, url to retrieve the public key
           
