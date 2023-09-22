@@ -52,7 +52,7 @@ jobs:
 
       - name: Setup reverse proxy to Nexus
         run: |
-          docker run --rm -i -p 8081:8081 mitmproxy/mitmproxy mitmdump -p 8081 --modify-headers "|X-NPS-NexusKey|${{ secrets.NEXUS_KEY }}" --mode reverse:${{ secrets.NEXUS_URL }} 
+          docker run --rm -i -p 8081:8081 mitmproxy/mitmproxy mitmdump -p 8081 --modify-headers "|X-NPS-NexusKey|${{ secrets.NEXUS_KEY }}" --mode reverse:${{ secrets.NEXUS_URL }} &
 
       # Initializes the CodeQL tools for scanning.
       - name: Initialize CodeQL
