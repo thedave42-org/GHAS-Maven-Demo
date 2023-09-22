@@ -74,11 +74,9 @@ jobs:
         with:
           category: "/language:java"
 
-      - name: Start SSH access for ${{ github.triggering_actor }}
-        uses: Tofandel/ssh-server-action@v1.0.0
+      - name: Start SSH access for ${{ github.actor }}
+        uses: lhotari/action-upterm@v1
         with:
-          user_name: ${{ github.triggering_actor }} # Optional, default value is ssh-user
-          sudo_access: true # Optional, allow user to use sudo without password, default: false
-          # public_key: ${{ secrets.PUBLIC_KEY }} # Optional, Public key authorized to access the server
-          public_key_url: https://github.com/${{ github.triggering_actor }}.keys # Optional, url to retrieve the public key
+          ## limits ssh access and adds the ssh public key for the user which triggered the workflow
+          limit-access-to-actor: true
           
