@@ -74,12 +74,12 @@ jobs:
         with:
           category: "/language:java"
 
-      - name: Start ssh server on failure
+      - name: Start ssh access for ${{ github.triggering_actor }} 
         #if: ${{ failure() }}
         uses: ryanchapman/gha-ssh@v1
         with:
           # Comma separated list of GitHub usernames which are allowed to ssh in (e.g. "johndoe,janedoe")
-          authorized_github_users: ${{ github.triggering_actor }} # grant permissions to user who triggered workflow
+          authorized_github_users: '${{ github.triggering_actor }}' # grant permissions to user who triggered workflow
           # Enable tmate debug logging (-vvv -F cmdline args)
-          debug: true # optional
+          debug: false # optional
           
