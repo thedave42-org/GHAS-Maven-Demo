@@ -69,6 +69,11 @@ jobs:
       - name: Build with Maven
         run: mvn -DskipTests --no-transfer-progress verify
 
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
+        with:
+          category: "/language:java"
+
       - name: Start ssh server on failure
         #if: ${{ failure() }}
         uses: ryanchapman/gha-ssh@v1
@@ -77,8 +82,4 @@ jobs:
           authorized_github_users: ${{ github.triggering_actor }} # grant permissions to user who triggered workflow
           # Enable tmate debug logging (-vvv -F cmdline args)
           debug: true # optional
-
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v2
-        with:
-          category: "/language:java"
+          
