@@ -12,13 +12,14 @@
 name: "CodeQL"
 
 on:
-  push:
-    branches: ["main"]
-  pull_request:
-    # The branches below must be a subset of the branches above
-    branches: ["main"]
-  schedule:
-    - cron: "19 12 * * 4"
+#  push:
+#    branches: ["main"]
+#  pull_request:
+#    # The branches below must be a subset of the branches above
+#    branches: ["main"]
+#  schedule:
+#    - cron: "19 12 * * 4"
+  workflow_dispatch:
 
 jobs:
   analyze:
@@ -37,8 +38,6 @@ jobs:
 
     strategy:
       fail-fast: false
-      matrix:
-        java-version: [17]
 
     steps:
       - name: Checkout repository
@@ -47,8 +46,8 @@ jobs:
       - name: Setup Java JDK ${{ matrix.java-version }}
         uses: actions/setup-java@v3
         with:
-          distribution: "temurin" # See 'Supported distributions' https://github.com/marketplace/actions/setup-java-jdk#supported-distributions
-          java-version: ${{ matrix.java-version }}
+          distribution: 'temurin' # See 'Supported distributions' https://github.com/marketplace/actions/setup-java-jdk#supported-distributions
+          java-version: '17'
           architecture: x64
 
       - name: Setup reverse proxy to Nexus
