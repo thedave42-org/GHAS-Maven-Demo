@@ -49,6 +49,8 @@ jobs:
           distribution: 'temurin' # See 'Supported distributions' https://github.com/marketplace/actions/setup-java-jdk#supported-distributions
           java-version: '17'
           architecture: x64
+          server-username: '' # Specify Maven user login
+          server-password: '' # Specify Maven user password
 
       - name: Setup reverse proxy to Nexus
         run: |
